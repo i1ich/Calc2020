@@ -1,16 +1,26 @@
+/* Reverse Polish notation implementation file */
 #include "Poliz.h"
 
 
-
-int Poliz::getPrior(Symbol S)
+int Poliz::getPrior(Symbol Symb)
 {
-  if (strcmp(S.S.c_str(), ")") == 0 || strcmp(S.S.c_str(), "(") == 0 )
-    return 0;
-  if (S.T != Symbol::Type::BINARY)
+  switch (Symb.T)
+  {
+    case Symbol::Type::OPENB:
+    case Symbol::Type::CLOSEB:
+      return 0;
+    case Symbol::Type::BINARY:
+      for (int i = 0; i < Opers.size(); i++)
+        if (Symb.S == Opers[i]->getName())
+          return Opers[i]->getPrior();
+      break;
+  default:
     return -1;
-  for (int i = 0; i < Opers.size(); i++)
-    if (strcmp(S.S.c_str(), Opers[i]->getName()) == 0)
-      return Opers[i]->getPrior();
+  }
+  /*if (Symb.S == ")" || Symb.S ==  "(" )
+    return 0;*/
+  /*if (Symb.T != Symbol::Type::BINARY)
+    return -1;*/
   return -1;
 }
 
@@ -160,7 +170,7 @@ bool Poliz::Symbol::IsPrefix(std::string S, std::vector<Operation *> Opers)
   {
     for (int i = 0; i < Opers.size(); i++)
     {
-      if(Opers[i]->getType() == Operation::PREFIX && strcmp(S.c_str(), Opers[i]->getName()) == 0)
+      if(Opers[i]->getType() == Operation::PREFIX && S == Opers[i]->getName())
         return true;
     }
     return false;
@@ -171,7 +181,7 @@ bool Poliz::Symbol::IsBinary(std::string S, std::vector<Operation *> Opers)
     for (int i = 0; i < Opers.size(); i++)
     {
       std::string tmp = Opers[i]->getName(); // debug view
-      if(Opers[i]->getType() == Operation::BINARY && strcmp(S.c_str(), tmp.c_str()) == 0)
+      if(Opers[i]->getType() == Operation::BINARY && S == tmp)
         return true;
     }
     return false;
@@ -198,7 +208,7 @@ bool Poliz::Symbol::IsPostfix(std::string S, std::vector<Operation *> Opers)
   {
     for (int i = 0; i < Opers.size(); i++)
     {
-      if (Opers[i]->getType() == Operation::POSTFIX && strcmp(S.c_str(), Opers[i]->getName()) == 0)
+      if (Opers[i]->getType() == Operation::POSTFIX && S == Opers[i]->getName())
         return true;
     }
     return false;

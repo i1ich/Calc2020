@@ -116,7 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
-    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="Seeker.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -125,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
-    <ClInclude Include="Files.h" />
+    <ClInclude Include="Seeker.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Operation.h" />

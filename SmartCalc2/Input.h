@@ -1,3 +1,4 @@
+/* Console input declaration file */
 #pragma once
 
 #include <iostream>

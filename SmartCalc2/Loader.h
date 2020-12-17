@@ -1,12 +1,15 @@
+/* Plugins loader declaration file */
 #pragma once
 #include <map>
 #include <tchar.h>
 #include "Operation.h"
-#include "Files.h"
+#include "Seeker.h"
+/* Plugins loader class */
 class Loader
 {
 private:
-  Files Plugins;
+  // Seeker plugins
+  Seeker Plugins;
   std::vector<Operation *> Operations;
 public:
   std::map<std::string, Operation *> OperMap; // operations and functions

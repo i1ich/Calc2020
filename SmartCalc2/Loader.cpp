@@ -1,3 +1,4 @@
+/* Plugins loader implementation file */
 #include "Loader.h"
 
 

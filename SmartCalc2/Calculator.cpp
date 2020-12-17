@@ -1,3 +1,4 @@
+/* Poliz evaluation implementation file */
 #include "Calculator.h"
 
 
@@ -16,7 +17,7 @@ double Calculator::Compute(std::vector<Poliz::Symbol> in)
   {
     if (in[i].T == Poliz::Symbol::NUM)
     {
-      Out.push(atof(in[i].S.c_str()));
+      Out.push(std::stod(in[i].S));
       i++;
     }
     else if (in[i].T == Poliz::Symbol::POSTFIX || in[i].T == Poliz::Symbol::PREFIX )

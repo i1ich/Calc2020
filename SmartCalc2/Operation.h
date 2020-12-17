@@ -1,6 +1,8 @@
+/* Operation loader declaration file */
 #pragma once
 #include <cstdlib>
 #include <iostream>
+#include <functional>
 #include <windows.h>
 #include <tchar.h>
 #include <vector>
@@ -20,6 +22,11 @@ private:
   const LPCSTR ResName = "Result"; // название загружаемой функции
   const LPCSTR TypeName = "GetType"; // название загружаемой функции POSTFIX|PREFIX|BINARY
   const LPCSTR PriorityName = "GetPriority"; // название загружаемой функции приоритет: 1 2 3
+  /* Get Type string from type adress (calls in constructor only)*/
+  static const std::function<std::string(FARPROC)> __getString;
+  static const std::function<int(FARPROC)> __getInt; 
+  static const std::function<double(FARPROC, double)> __getResult1;
+  static const std::function<double(FARPROC, double, double)> __getResult2;
 protected:
   LPCSTR Name; // file name
   HINSTANCE Module;
@@ -30,7 +37,7 @@ protected:
 public:
   // File name
   Operation(LPCSTR name);
-  const char *getName( void );
+  std::string getName( void );
   OP_TYPE getType( void );
   int getPrior( void );
   double Result( double a, double b );

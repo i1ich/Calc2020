@@ -1,3 +1,4 @@
+/* Main program file */
 #include <cstdlib>
 #include <iostream>
 #include <windows.h>

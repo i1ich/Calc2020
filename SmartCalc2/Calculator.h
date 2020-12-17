@@ -1,3 +1,4 @@
+/* Poliz evaluation declaration file */
 #pragma once
 #include <map>
 #include <functional>

@@ -1,3 +1,4 @@
+/* Reverse Polish notation declaration file */
 #pragma once
 #include <string>
 #include <vector>
